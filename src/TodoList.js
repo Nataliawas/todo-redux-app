@@ -3,7 +3,9 @@ import { connect } from 'react-redux'
 import {loadTodos} from './store/todo'
 export class TodoList extends React.Component {
 
-
+componentDidMount(){
+    this.props.loadTodos()
+}
     render() {
         return (
             <div>
