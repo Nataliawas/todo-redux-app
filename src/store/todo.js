@@ -24,7 +24,7 @@ const todoReducer = (state = [], action) => {
 const mapFbObjectToArray = data => Object.entries(data).map(item => ({
     id: item[0],
     ...item[1]
-  }))
+}))
 
 export const loadTodos = () => {
     return dispatch => {
@@ -36,6 +36,23 @@ export const loadTodos = () => {
                     todos: mapFbObjectToArray(data)
                 })
             })
+    }
+}
+
+export const addTodo = text => {
+    return dispatch => {
+        fetch('https://isajfdzl2.firebaseio.com/todos.json', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ text: text })
+        })
+        .then(response => {
+            if (response.status === 200) {
+                return dispatch(loadTodos())
+            }
+        })
     }
 }
 

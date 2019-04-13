@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import {loadTodos} from './store/todo'
+import {loadTodos, addTodo } from './store/todo'
 export class TodoList extends React.Component {
 
 componentDidMount(){
@@ -22,7 +22,9 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    loadTodos: () => dispatch(loadTodos())
+    loadTodos: () => dispatch(loadTodos()),
+    
+    
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(TodoList)
