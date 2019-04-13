@@ -1,15 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import {loadTodos} from './store/todo'
 export class TodoList extends React.Component {
 
 
-    // componentDidMount() {
-    //     fetch('https://isajfdzl2.firebaseio.com/todos.json')
-    //         .then(response = response.json)
-    //         .then(data => {
-    //             console.log(data)
-    //         })
-    // }
     render() {
         return (
             <div>
@@ -25,4 +19,8 @@ const mapStateToProps = (state) => ({
     todos: state.myTodoReducer
 })
 
-export default connect(mapStateToProps)(TodoList)
+const mapDispatchToProps = dispatch => ({
+    loadTodos: () => dispatch(loadTodos())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(TodoList)
